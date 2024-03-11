@@ -28,7 +28,9 @@ export class ArtistService {
   }
 
   findByNickName(nickName: string): Artist {
-    return this.findAll().find((artist) => artist.getNickName().includes(nickName));
+    return this.findAll().find((artist) =>
+      artist.getNickName().includes(nickName),
+    );
   }
 
   findByFirstName(firstName: string): Artist {
@@ -36,4 +38,9 @@ export class ArtistService {
       artist.getFirstName().includes(firstName),
     );
   }
+}
+
+export function findArtistById(id: number): Artist {
+  const artistService = new ArtistService();
+  return artistService.findById(id);
 }

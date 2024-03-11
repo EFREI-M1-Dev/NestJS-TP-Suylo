@@ -12,17 +12,17 @@ export class ArtistController {
   }
 
   @Get('artist/:id')
-  getArtistById(id: number): Artist {
+  findArtistById(id: number): Artist {
     return this.artistService.findById(id);
   }
 
   @Get('artist')
-  getArtistByNickName(@Query('name') nickName: string): Artist {
+  findArtistByNickname(@Query('name') nickName: string): Artist {
     return this.artistService.findByNickName(nickName);
   }
 
   @Get('artist')
-  getArtistByFirstName(@Query('firstName') firstName: string): Artist {
+  findArtistByFirstname(@Query('firstName') firstName: string): Artist {
     return this.artistService.findByFirstName(firstName);
   }
 }
