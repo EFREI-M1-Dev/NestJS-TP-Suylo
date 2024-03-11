@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ArtistService } from './artist.service';
 import { Artist } from './artist.interface';
 
@@ -11,9 +11,9 @@ export class ArtistController {
     return this.artistService.findAll();
   }
 
-  @Get('artist/:id')
-  findArtistById(id: number): Artist {
-    return this.artistService.findById(id);
+  @Get('artists/:id')
+  findArtistById(@Param('id') id: string): Artist | null {
+    return this.artistService.findById(parseInt(id));
   }
 
   @Get('artist')

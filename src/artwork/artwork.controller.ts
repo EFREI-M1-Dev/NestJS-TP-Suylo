@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ArtworkService } from './artwork.service';
+import { Artwork } from './artwork.interface';
 
 @Controller()
 export class ArtworkController {
@@ -11,17 +12,22 @@ export class ArtworkController {
   }
 
   @Get('artworks/:id')
-  findArtworkById(id: number) {
-    return this.artworkService.findById(id);
+  findArtworkById(@Param('id') id: string): Artwork | null {
+    return this.artworkService.findById(parseInt(id));
   }
 
   @Post('artworks')
-  newArtwork(name: string, date: string, artistId: number) {
-    return this.artworkService.newArtwork(name, date, artistId);
+  newArtwork(@Body() artData: any) {
+    const { name, date, artistId } = artData;
+    const artworks = this.artworkService.findAll();
+    const maxId = Math.max(...artworks.map((artwork) => artwork.getId()));
+    const newArtwork = new Artwork(maxId + 1, name, date, artistId);
+    this.artworkService.newArtwork(newArtwork);
+    return newArtwork;
   }
 
   @Delete('artworks/:id')
-  deleteArtwork(id: number) {
-    return this.artworkService.deleteArtwork(id);
+  deleteArtwork(@Param('id') id: string) {
+    return this.artworkService.deleteArtwork(parseInt(id));
   }
 }

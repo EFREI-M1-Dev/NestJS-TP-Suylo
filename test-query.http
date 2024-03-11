@@ -1,0 +1,34 @@
+### LOGS
+GET http://localhost:3000/logs
+
+### ARTISTS
+GET http://localhost:3000/artists
+
+### ARTIST BY ID
+GET http://localhost:3000/artists/1
+
+### ARTIST BY NAME
+GET http://localhost:3000/artist?name=L
+
+
+
+### ARTWORKS
+GET http://localhost:3000/artworks
+
+### ARTWORK BY ID
+GET http://localhost:3000/artworks/1
+
+### POST ARTWORK
+POST http://localhost:3000/artworks
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Le Pandemonium",
+  "date": "1841",
+  "artistId": 2
+}
+
+
+### DELETE ARTWORk
+DELETE http://localhost:3000/artworks/1

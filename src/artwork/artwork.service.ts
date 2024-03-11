@@ -34,11 +34,8 @@ export class ArtworkService {
     return this.findAll().find((artist) => artist.getId() === id);
   }
 
-  newArtwork(name: string, date: string, artistId: number): Artwork {
-    const id = this.findAll().length + 1;
-    const artwork = new Artwork(id, name, date, artistId);
-    this.findAll().push(artwork);
-    return artwork;
+  newArtwork(artwork: Artwork): void {
+    this.artworks.push(artwork);
   }
 
   deleteArtwork(id: number): Artwork[] {
